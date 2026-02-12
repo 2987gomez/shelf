@@ -9,6 +9,8 @@ final class DockHostingView<Content: View>: NSHostingView<Content> {
     var onDragEntered: (() -> Void)?
     var onDragExited: (() -> Void)?
     
+    override var isOpaque: Bool { false }
+    
     // Window dragging state
     private var dragStartLocation: NSPoint?
     private var isDraggingItem = false

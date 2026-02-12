@@ -75,6 +75,9 @@ final class DockWindowController {
         let hostingView = DockHostingView(
             rootView: FloatingDockView(dockID: dockID, store: store)
         )
+        hostingView.wantsLayer = true
+        hostingView.layer?.backgroundColor = .clear
+        hostingView.layer?.isOpaque = false
         hostingView.registerForDraggedTypes(DockHostingView<FloatingDockView>.acceptedTypes)
         
         hostingView.onDropFileURLs = { [weak self] urls in
