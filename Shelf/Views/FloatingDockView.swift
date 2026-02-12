@@ -175,24 +175,39 @@ struct FloatingDockView: View {
         showingAddLink = false
     }
     
+    private func dockItemContent(_ item: DockItem, dock: DockConfig) -> some View {
+        DockItemView(
+            item: item,
+            iconSize: dock.iconSize,
+            isHovered: hoveredItemID == item.id,
+            proximityScale: 1.0,
+            orientation: dock.orientation,
+            onRemove: { store.removeItem(from: dock.id, itemID: item.id) }
+        )
+        .zIndex(hoveredItemID == item.id ? 10 : 0)
+        .opacity(draggingItemID == item.id ? 0.3 : 1.0)
+        .onHover { hovering in
+            hoveredItemID = hovering ? item.id : nil
+        }
+        .onDrag {
+            draggingItemID = item.id
+            return NSItemProvider(object: item.id.uuidString as NSString)
+        }
+        .onDrop(of: [UTType.text], delegate: ReorderDropDelegate(
+            item: item,
+            dockID: dockID,
+            store: store,
+            draggingItemID: $draggingItemID
+        ))
+    }
+    
     private func horizontalDock(_ dock: DockConfig) -> some View {
         HStack(spacing: 4) {
             if dock.items.isEmpty {
                 emptyState
             } else {
                 ForEach(dock.items) { item in
-                    DockItemView(
-                        item: item,
-                        iconSize: dock.iconSize,
-                        isHovered: hoveredItemID == item.id,
-                        proximityScale: 1.0,
-                        orientation: dock.orientation,
-                        onRemove: { store.removeItem(from: dock.id, itemID: item.id) }
-                    )
-                    .zIndex(hoveredItemID == item.id ? 10 : 0)
-                    .onHover { hovering in
-                        hoveredItemID = hovering ? item.id : nil
-                    }
+                    dockItemContent(item, dock: dock)
                 }
             }
         }
@@ -213,18 +228,7 @@ struct FloatingDockView: View {
                 emptyState
             } else {
                 ForEach(dock.items) { item in
-                    DockItemView(
-                        item: item,
-                        iconSize: dock.iconSize,
-                        isHovered: hoveredItemID == item.id,
-                        proximityScale: 1.0,
-                        orientation: dock.orientation,
-                        onRemove: { store.removeItem(from: dock.id, itemID: item.id) }
-                    )
-                    .zIndex(hoveredItemID == item.id ? 10 : 0)
-                    .onHover { hovering in
-                        hoveredItemID = hovering ? item.id : nil
-                    }
+                    dockItemContent(item, dock: dock)
                 }
             }
         }
@@ -242,21 +246,18 @@ struct FloatingDockView: View {
     private var dockBackground: some View {
         ZStack {
             VisualEffectBackground(
-                material: .hudWindow,
+                material: .popover,
                 blendingMode: .behindWindow
             )
             
-            RoundedRectangle(cornerRadius: 16, style: .continuous)
-                .fill(.white.opacity(0.05))
-            
-            RoundedRectangle(cornerRadius: 16, style: .continuous)
-                .strokeBorder(.white.opacity(0.2), lineWidth: 0.5)
+            RoundedRectangle(cornerRadius: 14, style: .continuous)
+                .strokeBorder(.white.opacity(0.35), lineWidth: 0.5)
         }
-        .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
-        .shadow(color: .black.opacity(0.3), radius: 8, y: 2)
+        .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
+        .shadow(color: .black.opacity(0.2), radius: 12, y: 4)
         .overlay {
             if isDragTargeted {
-                RoundedRectangle(cornerRadius: 16, style: .continuous)
+                RoundedRectangle(cornerRadius: 14, style: .continuous)
                     .strokeBorder(.blue.opacity(0.6), lineWidth: 2)
             }
         }
@@ -297,5 +298,35 @@ struct FloatingDockView: View {
             }
         }
         return true
+    }
+}
+
+struct ReorderDropDelegate: DropDelegate {
+    let item: DockItem
+    let dockID: UUID
+    let store: DockStore
+    @Binding var draggingItemID: UUID?
+    
+    func dropEntered(info: DropInfo) {
+        guard let draggingID = draggingItemID, draggingID != item.id else { return }
+        withAnimation(.easeInOut(duration: 0.2)) {
+            store.moveItem(in: dockID, fromID: draggingID, toID: item.id)
+        }
+    }
+    
+    func dropUpdated(info: DropInfo) -> DropProposal? {
+        DropProposal(operation: .move)
+    }
+    
+    func performDrop(info: DropInfo) -> Bool {
+        draggingItemID = nil
+        return true
+    }
+    
+    func dropExited(info: DropInfo) {
+    }
+    
+    func validateDrop(info: DropInfo) -> Bool {
+        draggingItemID != nil
     }
 }

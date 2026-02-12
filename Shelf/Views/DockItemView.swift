@@ -45,18 +45,31 @@ struct DockItemView: View {
         switch item.type {
         case .spacer:
             Color.clear
-                .frame(width: iconSize / 3, height: iconSize)
+                .frame(width: iconSize / 2, height: iconSize)
+                .contentShape(Rectangle())
+                .contextMenu {
+                    Button("Remove from Shelf", role: .destructive) {
+                        onRemove()
+                    }
+                }
         case .separator:
-            if orientation == .horizontal {
-                RoundedRectangle(cornerRadius: 1)
-                    .fill(.white.opacity(0.25))
-                    .frame(width: 2, height: iconSize * 0.6)
-                    .padding(.horizontal, 2)
-            } else {
-                RoundedRectangle(cornerRadius: 1)
-                    .fill(.white.opacity(0.25))
-                    .frame(width: iconSize * 0.6, height: 2)
-                    .padding(.vertical, 2)
+            Group {
+                if orientation == .horizontal {
+                    RoundedRectangle(cornerRadius: 1)
+                        .fill(.white.opacity(0.25))
+                        .frame(width: 2, height: iconSize * 0.6)
+                        .padding(.horizontal, 2)
+                } else {
+                    RoundedRectangle(cornerRadius: 1)
+                        .fill(.white.opacity(0.25))
+                        .frame(width: iconSize * 0.6, height: 2)
+                        .padding(.vertical, 2)
+                }
+            }
+            .contextMenu {
+                Button("Remove from Shelf", role: .destructive) {
+                    onRemove()
+                }
             }
         case .app, .folder, .link, .snippet:
             iconView

@@ -9,6 +9,11 @@ final class DockHostingView<Content: View>: NSHostingView<Content> {
     var onDragEntered: (() -> Void)?
     var onDragExited: (() -> Void)?
     
+    // Window dragging state
+    private var dragStartLocation: NSPoint?
+    private var isDraggingItem = false
+    private var isMovingWindow = false
+    
     static var acceptedTypes: [NSPasteboard.PasteboardType] {
         [
             .fileURL, .URL, .string, .html, .rtf,
@@ -18,6 +23,65 @@ final class DockHostingView<Content: View>: NSHostingView<Content> {
             .init("public.plain-text"),
         ]
     }
+    
+    // MARK: - Window Dragging (replaces isMovableByWindowBackground)
+    //
+    // Strategy: during the first ~10px of drag, ONLY forward events to SwiftUI
+    // so .onDrag on items can detect and claim the drag. If SwiftUI doesn't
+    // claim it (background drag), switch to window movement and stop forwarding.
+    
+    override func mouseDown(with event: NSEvent) {
+        dragStartLocation = NSEvent.mouseLocation
+        isDraggingItem = false
+        isMovingWindow = false
+        super.mouseDown(with: event)
+    }
+    
+    override func mouseDragged(with event: NSEvent) {
+        // If SwiftUI claimed the drag for item reordering, just forward
+        if isDraggingItem {
+            super.mouseDragged(with: event)
+            return
+        }
+        
+        // If already confirmed as window drag, only move window (don't forward)
+        if isMovingWindow {
+            if let window = self.window {
+                var origin = window.frame.origin
+                origin.x += event.deltaX
+                origin.y -= event.deltaY
+                window.setFrameOrigin(origin)
+            }
+            return
+        }
+        
+        // Detection phase: forward to SwiftUI so .onDrag can fire
+        super.mouseDragged(with: event)
+        
+        // Check if enough distance passed without SwiftUI claiming the drag
+        guard let start = dragStartLocation else { return }
+        let current = NSEvent.mouseLocation
+        let distance = hypot(current.x - start.x, current.y - start.y)
+        if distance > 10 {
+            // SwiftUI didn't claim it — this is a window drag
+            isMovingWindow = true
+        }
+    }
+    
+    override func mouseUp(with event: NSEvent) {
+        dragStartLocation = nil
+        isDraggingItem = false
+        isMovingWindow = false
+        super.mouseUp(with: event)
+    }
+    
+    override func beginDraggingSession(with items: [NSDraggingItem], event: NSEvent, source: any NSDraggingSource) -> NSDraggingSession {
+        isDraggingItem = true
+        isMovingWindow = false
+        return super.beginDraggingSession(with: items, event: event, source: source)
+    }
+    
+    // MARK: - External Drop Handling
     
     override func draggingEntered(_ sender: any NSDraggingInfo) -> NSDragOperation {
         let pb = sender.draggingPasteboard
@@ -42,6 +106,13 @@ final class DockHostingView<Content: View>: NSHostingView<Content> {
         
         let types = pb.types ?? []
         print("[Shelf] performDragOperation — pasteboard types: \(types.map(\.rawValue))")
+        
+        // 0. Skip internal reorder drags (UUID strings from .onDrag)
+        if let text = pb.string(forType: .string),
+           UUID(uuidString: text) != nil {
+            print("[Shelf] Internal reorder drag detected, skipping AppKit handler")
+            return false
+        }
         
         // 1. File URLs from Finder (.app, folders, files)
         let fileURLs = pb.readObjects(forClasses: [NSURL.self], options: [
